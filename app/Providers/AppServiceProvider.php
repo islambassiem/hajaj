@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades;
-use Illuminate\Support\Facades\Cache;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,17 +24,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (app()->runningInConsole() || !Schema::hasTable('categories') || !Schema::hasTable('posts')) {
+            return;
+        }
+
         $categories = Cache::rememberForever('categories', function () {
             return Category::whereNull('parent_id')->with('parent')->get();
         });
-        Facades\View::composer('components.layouts.app', function ($view) use ($categories){
+
+        $activeCategory = is_numeric(request()->segment(2))
+            ?  Category::find(Post::find(request()->segment(2))->category_id)
+            : Category::where('slug', request()->segment(2))->first();
+
+        Facades\View::composer('components.layouts.app', function ($view) use ($categories, $activeCategory) {
             $view->with('categories', $categories)
-                ->with(
-                    'activeCategory',
-                    is_numeric(request()->segment(2))
-                        ?  Category::find(Post::find(request()->segment(2))->category_id)
-                        : Category::where('slug', request()->segment(2))->first()
-                );
+                ->with('activeCategory',$activeCategory);
         });
     }
 }
