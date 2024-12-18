@@ -205,9 +205,12 @@
                                     aria-haspopup="true" x-on:click="userDropdownIsOpen = ! userDropdownIsOpen"
                                     x-bind:aria-expanded="userDropdownIsOpen">
                                     {{-- <img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-7.webp" class="size-8 object-cover rounded-md" alt="avatar" aria-hidden="true" /> --}}
-                                    <span class="size-5 object-cover rounded-md" alt="avatar" aria-hidden="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>
-                                    </span>
+                                    <div class="object-cover rounded-md" alt="avatar" aria-hidden="true">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="size-8" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                          </svg>
+                                    </div>
                                     <div class="hidden md:flex flex-col">
                                         <span class="text-sm font-bold text-neutral-900 dark:text-white">{{ Str::of(auth()->user()->name)->before(' ') }}</span>
                                         <span class="text-xs" aria-hidden="true">{{ Str::of(auth()->user()->email)->before('@') }}</span>
