@@ -11,11 +11,10 @@ class ImageUploader extends Controller
      */
     public function __invoke(Request $request)
     {
-        $files = $request->file('file');
-        $paths = [];
-        foreach ($files as $file) {
-            $paths[] = $file->store('temp');
-        }
-        return $paths;
+        $file = $request->file('file');
+        $path = $file->store('temp');
+        return response()->json([
+            'path' => $path
+        ]);
     }
 }

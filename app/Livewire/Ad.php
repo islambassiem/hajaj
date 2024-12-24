@@ -26,6 +26,10 @@ class Ad extends Component
     #[Validate('required')]
     public $childId;
 
+    public $images;
+
+    public $test;
+
     public bool $success = false;
 
     #[Computed()]
@@ -50,14 +54,32 @@ class Ad extends Component
     public function save()
     {
         $this->validate();
-        Post::create([
+        dd([
+            'title' => $this->title,
+            'description' => $this->description,
+            'price' => $this->price,
+            'category_id' => $this->childId,
+            'user_id' => Auth::user()->id,
+            'images' => $this->images,
+            'test' => $this->test
+        ]);
+
+        $result =  [
+            'title' => $this->title,
+            'description' => $this->description,
+            'price' => $this->price,
+            'category_id' => $this->childId,
+            'user_id' => Auth::user()->id,
+            'images' => $this->images
+        ];
+        $post = Post::create([
             'title' => $this->title,
             'description' => $this->description,
             'price' => $this->price,
             'category_id' => $this->childId,
             'user_id' => Auth::user()->id
         ]);
-        $this->success = true; 
+        $this->success = true;
         $this->reset(['title', 'price', 'description', 'patentId', 'childId']);
     }
 

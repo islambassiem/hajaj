@@ -19,8 +19,8 @@
 
     <title>{{ $title ?? env('APP_NAME') }}</title>
 
-    <script src="{{ asset('assets/js/lodash.min.js') }}"></script>
-    <script src="{{ asset('assets/js/lodash.min.js') }}"></script>
+    <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
+    <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -71,45 +71,6 @@
                 }
             });
         }
-    </script>
-    <script type="text/javascript">
-        var maxFilesizeVal = 12;
-        var maxFilesVal = 2;
-
-        // Note that the name "myDragAndDropUploader" is the camelized id of the form.
-        Dropzone.options.uploader = {
-
-            paramName: "file",
-            maxFilesize: maxFilesizeVal, // MB
-            maxFiles: maxFilesVal,
-            resizeQuality: 1.0,
-            acceptedFiles: ".jpeg,.jpg,.png,.webp",
-            addRemoveLinks: false,
-            timeout: 60000,
-            dictDefaultMessage: "Drop your files here or click to upload",
-            dictFallbackMessage: "Your browser doesn't support drag and drop file uploads.",
-            dictFileTooBig: "File is too big. Max filesize: " + maxFilesizeVal + "MB.",
-
-            dictInvalidFileType: "Invalid file type. Only JPG, JPEG, PNG and GIF files are allowed.",
-            dictMaxFilesExceeded: "You can only upload up to " + maxFilesVal + " files.",
-            maxfilesexceeded: function(file) {
-                this.removeFile(file);
-                // this.removeAllFiles();
-            },
-            sending: function(file, xhr, formData) {
-                $('#message').text('Image Uploading...');
-            },
-            success: function(file, response) {
-                $('#message').text(response.success);
-                console.log(response.success);
-                console.log(response);
-            },
-            error: function(file, response) {
-                $('#message').text('Something Went Wrong! ' + response);
-                console.log(response);
-                return false;
-            }
-        };
     </script>
 </body>
 
