@@ -78,7 +78,7 @@
                 @foreach ($categories as $category)
                     <a href="#"
                         class="flex items-center gap-2 px-2 py-1.5 text-sm rounded-md font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-none dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white">
-                        <span>{{ Str::ucfirst($category->name) }}</span>
+                        <span>{{ app()->getLocale() === 'en' ? Str::ucfirst($category->name_en) : $category->name_ar }}</span>
                     </a>
                     @if ($category->children->isNotEmpty())
                         <ul class="pl-4">
@@ -87,7 +87,7 @@
                                     class="ltr:border-l-2 rtl:border-r-2 px-2 py-0.5 border-neutral-300 dark:border-neutral-700 {{ $activeCategory?->slug === $child->slug ? 'bg-black/5 text-neutral-900 dark:bg-white/5 dark:text-white border-x-indigo-500 dark:border-white' : '' }}">
                                     <a href="{{ route('category', $child->slug) }}"
                                         class="flex items-center gap-2 px-2 py-1.5 text-sm rounded-md text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-none dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white">
-                                        <span>{{ Str::ucfirst($child->name) }}</span>
+                                        <span>{{ app()->getLocale() === 'en' ? Str::ucfirst($child->name_en) : $child->name_ar }}</span>
                                     </a>
                                 </li>
                             @endforeach
@@ -122,15 +122,15 @@
                             <ol class="flex flex-wrap items-center gap-1">
                                 <li class="flex items-center gap-1">
                                     <a href="#"
-                                        class="hover:text-neutral-900 dark:hover:text-white">{{ Str::ucfirst($activeCategory->parent->name) }}</a>
+                                        class="hover:text-neutral-900 dark:hover:text-white">{{ app()->getLocale() === 'en' ? Str::ucfirst($activeCategory->parent->name_en) : $activeCategory->parent->name_ar }}</a>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"
-                                        fill="none" stroke-width="2" class="size-4" aria-hidden="true">
+                                        fill="none" stroke-width="2" class="size-4 rtl:rotate-180" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                                     </svg>
                                 </li>
                                 <li class="flex items-center gap-1 font-bold text-neutral-900 dark:text-white"
-                                    aria-current="page">{{ Str::ucfirst($activeCategory->name) }}</li>
+                                    aria-current="page">{{ app()->getLocale() === 'en' ? Str::ucfirst($activeCategory->name_en) : $activeCategory->name_ar }}</li>
                             </ol>
                         </nav>
                     @else
@@ -307,7 +307,6 @@
         </div>
     </div>
 
-
     @livewireScripts
     <script>
         document.querySelector('#sidebar').addEventListener('scroll', () => {
@@ -320,50 +319,6 @@
                 document.querySelector('#sidebar').scrollTop = Number(storedScrollPosition);
             }
         });
-
-        // document.addEventListener("DOMContentLoaded", () => {
-        //     const currentDirection = localStorage.getItem("direction") || "ltr";
-        //     fetch("/sync-direction", {
-        //             method: "POST",
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //                 "X-CSRF-TOKEN": document.querySelector('meta[name=' + 'csrf-token' + ']').content,
-        //             },
-        //             body: JSON.stringify({
-        //                 direction: currentDirection
-        //             }),
-        //     })
-        //     .then((response) => response.json())
-        //     .then((data) => console.log(data));
-        // });
-
-
-        // document.addEventListener("DOMContentLoaded", () => {
-        //     const currentDirection = localStorage.getItem("direction") || "ltr";
-        //     const sessionDirection = document.documentElement.getAttribute("dir");
-
-        //     // If session direction differs from localStorage, sync and reload
-        //     if (currentDirection !== sessionDirection) {
-        //         const form = document.createElement("form");
-        //         form.method = "POST";
-        //         form.action = "/sync-direction";
-
-        //         const directionInput = document.createElement("input");
-        //         directionInput.type = "hidden";
-        //         directionInput.name = "direction";
-        //         directionInput.value = currentDirection;
-
-        //         const csrfInput = document.createElement("input");
-        //         csrfInput.type = "hidden";
-        //         csrfInput.name = "_token";
-        //         csrfInput.value = document.querySelector('meta[name="csrf-token"]').content;
-
-        //         form.appendChild(directionInput);
-        //         form.appendChild(csrfInput);
-        //         document.body.appendChild(form);
-        //         form.submit();
-        //     }
-        // });
     </script>
 </body>
 

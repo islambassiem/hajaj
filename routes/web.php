@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\ImageUploader;
 use App\Http\Controllers\LocaleController;
 use App\Http\Middleware\SetLocale;
+use App\Livewire\Ad;
 use App\Livewire\Category;
 use App\Livewire\Post;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -48,3 +51,5 @@ Route::get('/download-seed', function () {
 
 Route::get('/category/{slug?}', Category::class)->name('category');
 Route::get('/post/{post}', Post::class)->name('post');
+Route::post('/ad', Ad::class)->name('ad');
+Route::post('/upload', ImageUploader::class)->name('ad.upload');
