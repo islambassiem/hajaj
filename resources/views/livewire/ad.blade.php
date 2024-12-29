@@ -1,5 +1,5 @@
 <div class="p-4 m-4">
-    <form id="postForm" action="{{ route('ad') }}" method="post" enctype="multipart/form-data" wire:submit="save">
+    <form id="postForm" action="{{ route('create.post') }}" method="post" enctype="multipart/form-data" wire:submit="save">
         @csrf
         @if ($success)
             <div class="relative w-full overflow-hidden rounded-md border border-green-500 bg-white text-neutral-600 dark:bg-neutral-950 dark:text-neutral-300"
@@ -118,25 +118,14 @@
                 <div id="message"></div>
             </div>
         </div>
-        <select id="images" multiple wire:model="images"></select>
-        <select id="test" multiple wire:model="test">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3" selected>3</option>
-            <option value="4" selected>4</option>
-            <option value="5" selected>5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-        </select>
         <div class="flex items-center justify-end mt-4">
             <button type="submit" id="submit">Submit</button>
         </div>
     </form>
-    <script type="text/javascript">
-
+    {{-- <script type="text/javascript">
         let files = [];
-
         let select = document.getElementById('images');
+				let form = new FormData(document.getElementById('postForm'));
         let myDropzone = new Dropzone("div#myId", {
             url: "{{ route('ad.upload') }}",
             paramName: "file",
@@ -147,6 +136,8 @@
             dictDefaultMessage: "{{ __('Drop files here to upload') }}",
             success: function(file, response) {
                 files.push(response.path);
+								form.append('username', 'johnsmith')
+								console.log(form);
             },
             error: function(file, response) {
                 $('#message').text('Something Went Wrong! ' + response);
@@ -206,6 +197,6 @@
                 return false;
             }
         };
-    </script>
+    </script> --}}
 </div>
 

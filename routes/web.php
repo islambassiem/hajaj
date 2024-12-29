@@ -5,24 +5,22 @@ use App\Http\Controllers\LocaleController;
 use App\Http\Middleware\SetLocale;
 use App\Livewire\Ad;
 use App\Livewire\Category;
+use App\Livewire\CreatePost;
 use App\Livewire\Post;
+use App\Livewire\UploadImages;
 use Illuminate\Support\Facades\Route;
-
-
-
-
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 Route::get('/', function () {
     return redirect('/category');
 });
-
 
 Route::get('/lang/{lang}', [LocaleController::class, 'syncDirection'])
     ->middleware(SetLocale::class)
     ->name('lang');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
-    Route::get('/dashboard', function(){
+    Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 });
@@ -51,5 +49,13 @@ Route::get('/download-seed', function () {
 
 Route::get('/category/{slug?}', Category::class)->name('category');
 Route::get('/post/{post}', Post::class)->name('post');
-Route::post('/ad', Ad::class)->name('ad');
-Route::post('/upload', ImageUploader::class)->name('ad.upload');
+Route::get('/create', CreatePost::class)->name('create.post');
+Route::get('/upload', UploadImages::class)->name('upload');
+Route::post('/upload-images', [ImageUploader::class, 'upload'])->name('image.upload');
+Route::post('/delete-image', [ImageUploader::class, 'delete'])->name('image.delete');
+
+
+Route::get('test', function () {
+    $media = Media::where('name', 'a44bcdc344b93f032cd556e498aece81')->first();
+    return $media->delete();
+});
