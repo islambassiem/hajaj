@@ -62,6 +62,7 @@ class CreatePost extends Component
             ->route('upload')
             ->with('post_id', $post->id);
     }
+    
     #[Layout('layouts.app')]
     public function render()
     {

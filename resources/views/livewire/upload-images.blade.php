@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Upload the images') . session('post_id') }}
+            {{ __('Upload the images') }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
                     </svg>
                 </div>
             </form>
-            <ul id="message"></ul>
+            <ul id="message" class="text-sm text-red-500 py-2"></ul>
         </div>
     </div>
 
@@ -32,22 +32,22 @@
                 dictRemoveFile: "Remove",
                 // maxFilesize: 2, // MB
                 acceptedFiles: ".jpeg, .png, .jpg, .gif, .svg",
+                addRemoveLinks: true,
                 maxfilesexceeded: function(file) {
                     this.removeFile(file);
                     // this.removeAllFiles();
                 },
-                addRemoveLinks: true,
                 success: function(file, response) {
                     document.getElementById('uploader').style.display = 'none';
                     file.media = JSON.parse(file.xhr.response).media;
-                    // console.log(file);
-                    // console.log (JSON.parse(file.xhr.response).media);
+                    document.getElementById('message').innerHTML = '';
                 },
                 error: function(file, response) {
                     document.getElementById('uploader').style.display = 'none';
                     for (let i = 0; i < response.errors.file.length; i++) {
                         document.getElementById('message').innerHTML = response.errors.file[i];
-                    }
+                    };
+                    this.removedfile(file)
                 },
                 removedfile(file) {
                     if (file.previewElement != null && file.previewElement.parentNode != null) {
@@ -66,9 +66,6 @@
                     return this._updateMaxFilesReachedClass();
                 },
             });
-            // document.querySelector(".dz-remove").addEventListener("click", function() {
-            //     alert();
-            // })
         </script>
     @endsection
 </div>
