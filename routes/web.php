@@ -52,7 +52,7 @@ Route::get('/post/{post}', Post::class)->name('post');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/create', CreatePost::class)->name('create.post');
-    Route::get('/edit/{post}', EditPost::class)->name('edit.post');
+    Route::get('/posts/{post}/edit', EditPost::class)->name('edit.post');
     Route::get('/upload', UploadImages::class)->name('upload');
     Route::post('/upload-images', [ImageUploader::class, 'upload'])->name('image.upload');
     Route::post('/delete-image', [ImageUploader::class, 'delete'])->name('image.delete');

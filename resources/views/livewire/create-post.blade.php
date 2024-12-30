@@ -22,11 +22,11 @@
                                                 d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
                                         </svg>
                                     @enderror
-                                    Title
+                                    {{ __('Title') }}
                                 </label>
                                 <input wire:model="title" id="title" type="text"
                                     class="@error('title') border-red-500 placeholder:text-red-500 @enderror w-full rounded-md border bg-neutral-50 px-2 pt-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white"
-                                    placeholder="Enter your name" autocomplete="title" />
+                                    placeholder="{{ __("Title to your Ad") }}" autocomplete="title" />
                                 @error('title')
                                     <span class="text-sm text-red-500">{{ $message }}</span>
                                 @enderror
@@ -42,11 +42,11 @@
                                                 d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
                                         </svg>
                                     @enderror
-                                    Price
+                                    {{ __('Price') }}
                                 </label>
                                 <input wire:model="price" id="price" type="number"
                                     class="@error('price') border-red-500 placeholder:text-red-500 @enderror w-full rounded-md border bg-neutral-50 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white"
-                                    placeholder="Enter your name" autocomplete="price" />
+                                    placeholder="{{ __('Approximate price for your good') }}" autocomplete="price" />
                                 @error('price')
                                     <span class="text-sm text-red-500">{{ $message }}</span>
                                 @enderror
@@ -54,7 +54,7 @@
 
                             <div
                                 class="relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300 mb-5">
-                                <label for="parent" class="w-fit pl-0.5 text-sm">Operating System</label>
+                                <label for="parent" class="w-fit pl-0.5 text-sm">{{ __('Category') }}</label>
                                 <select wire:model.live="patentId" id="parent"
                                     class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
                                     <option selected>{{ __('Choose') }}</option>
@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
-                                <label for="child" class="w-fit pl-0.5 text-sm">Operating System</label>
+                                <label for="child" class="w-fit pl-0.5 text-sm">{{ __('Sub category') }}</label>
                                 <select wire:model.live="childId" id="child"
                                     class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
                                     <option selected>{{ __('Choose') }}</option>
@@ -94,11 +94,11 @@
                                                 d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
                                         </svg>
                                     @enderror
-                                    Description
+                                    {{ __('Description') }}
                                 </label>
                                 <textarea wire:model="description" id="description"
                                     class="@error('description') border-red-500 placeholder:text-red-500 @enderror w-full min-h-72 rounded-md border bg-neutral-50 px-2.5 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white"
-                                    rows="10" placeholder="We'd love to hear from you..."></textarea>
+                                    rows="10" placeholder="{{ __('All information about your good') }}"></textarea>
                                 @error('description')
                                     <span class="text-sm text-red-500">{{ $message }}</span>
                                 @enderror

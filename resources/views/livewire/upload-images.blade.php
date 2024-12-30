@@ -21,6 +21,9 @@
                 </div>
             </form>
             <ul id="message" class="text-sm text-red-500 py-2"></ul>
+            <div class="float-end">
+                <a href="{{ route('dashboard') }}" class="border border-indigo-500 bg-indigo-500 text-gray-200 rounded-xl px-4 py-2 hover:bg-indigo-300 hover:text-white hover:border-neutral-100">{{ __('Finish') }}</a>
+            </div>
         </div>
     </div>
 

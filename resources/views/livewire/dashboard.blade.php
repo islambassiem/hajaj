@@ -1,6 +1,12 @@
 <div class="py-4 my-4">
     @if($posts->count() > 0)
-        <div class="flex flex-col">
+    <div class="flex flex-col">
+            <a href="{{ route('create.post') }}" class="flex gap-1 items-center self-end mx-6 border border-indigo-500 bg-indigo-500 text-gray-200 rounded-xl px-4 py-2 hover:bg-indigo-300 hover:text-white hover:border-neutral-100 ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5z"/>
+                  </svg>
+                Add
+            </a>
             <div class="-m-1.5 overflow-x-auto">
                 <div class="p-1.5 min-w-full inline-block align-middle">
                     <div class="overflow-hidden">
@@ -13,6 +19,9 @@
                                     <th scope="col"
                                         class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                         {{ __('Title') }}</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
+                                        {{ __('Price') }}</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                         {{ __('Category') }}</th>
@@ -36,12 +45,14 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                                             {{ $post->title }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+                                            {{ $post->price }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                                             {{ app()->getLocale() === 'en' ? $post->category->name_en : $post->category->name_ar }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                                             {{ $post->created_at }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                            <a href="{{ route('edit.post', $post->id) }}"
+                                            <a href="{{ route('edit.post', $post) }}"
                                             class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-neutral-500 p-2 hover:bg-indigo-100 text-blue-600 hover:text-blue-800 focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"
                                             >
                                             <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 100 100" class="size-5"><path fill="#fdbc01" d="m77.13,24.59c-1.69-1.76-17.92-2.18-17.92-2.18l-42.97,42.97c-.57.57,17.81,18.95,18.38,18.38l42.97-42.97s.71-14.98-.46-16.21Z"/><path fill="#fd86ae" d="m85.99,22.76c-2.54-3.27-5.48-6.22-8.75-8.75-3.11-2.41-7.54-2.09-10.33.69l-7.71,7.71,18.38,18.38,7.71-7.71c2.78-2.78,3.1-7.22.69-10.33Z"/><path fill="#c9dcf4" d="m19.74,87.26l12.79-2.4c.76-.14,1.46-.51,2.02-1.04-5.03-7.68-10.69-13.34-18.38-18.37-.53.56-.9,1.26-1.04,2.02l-2.4,12.79,7,7Z"/><path fill="#4a254b" d="m17.27,82.73c-1.29-1.29-2.87-2.11-4.53-2.47l-.26,1.37c-.65,3.49,2.4,6.54,5.89,5.89l1.37-.26c-.36-1.66-1.18-3.24-2.47-4.53Z"/><path fill="#4a254b" d="m77.87,41.57c-.13,0-.26-.05-.35-.15l-6.97-6.97c-.2-.2-.2-.51,0-.71s.51-.2.71,0l6.97,6.97c.2.2.2.51,0,.71-.1.1-.23.15-.35.15Z"/><path fill="#4a254b" d="m30.49,78.72c-.15,0-.29-.06-.39-.19-3.98-4.91-8.49-8.94-14.19-12.67-.23-.15-.29-.46-.14-.69.15-.23.46-.29.69-.14,5.79,3.79,10.37,7.89,14.42,12.88.17.21.14.53-.07.7-.09.07-.2.11-.31.11Z"/><path fill="#4a254b" d="m54.26,55.65c1.45-1.45,1.55-3.74.31-5.31-.15-.19-.43-.22-.61-.05-.98.98-4.08,4.08-5.06,5.06-.17.17-.15.45.05.61,1.57,1.25,3.86,1.14,5.31-.31Z"/><circle cx="41.17" cy="55.29" r="4.5" fill="#fff"/><circle cx="41.17" cy="55.29" r="1.93" fill="#4a254b"/><circle cx="53.9" cy="42.56" r="4.5" fill="#fff"/><circle cx="53.9" cy="42.56" r="1.93" fill="#4a254b"/></svg>
@@ -67,9 +78,9 @@
             </div>
         </div>
     @else
-        <div>
-            <span>{{ __('No Ads Yet') }}</span>
-            <a href="{{ route('create.post') }}">{{ __('Add one') }}</a>
+        <div class="p-4 mx-4 bg-red-500 text-white rounded-lg">
+            <span>{{ __('No Ads yet') }}</span>
+            <span class="underline"><a href="{{ route('create.post') }}">{{ __('Create One') }}</a></span>
         </div>
     @endif
 </div>
