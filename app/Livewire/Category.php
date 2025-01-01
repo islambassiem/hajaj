@@ -14,6 +14,8 @@ class Category extends Component
 
     public $slug;
 
+    public string $search = '';
+
     public function mount($slug = null)
     {
         $this->slug = $slug;
@@ -25,6 +27,11 @@ class Category extends Component
             ->when($this->slug, function ($query) {
                 $category = CategoryModel::where('slug', $this->slug)->first();
                 return $query->where('category_id', $category->id);
+            })
+            ->when($this->search, function ($query){
+                return $query
+                    ->where('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%');
             })
             ->with(['media', 'category'])
             ->take($this->limit)
