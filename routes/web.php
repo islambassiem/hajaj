@@ -4,6 +4,7 @@ use App\Livewire\Ad;
 use App\Livewire\Post;
 use App\Livewire\Category;
 use App\Livewire\EditPost;
+use App\Livewire\ShowPost;
 use App\Livewire\CreatePost;
 use App\Livewire\UploadImages;
 use App\Http\Middleware\SetLocale;
@@ -53,6 +54,7 @@ Route::get('/post/{post}', Post::class)->name('post');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/create', CreatePost::class)->name('create.post');
     Route::get('/posts/{post}/edit', EditPost::class)->name('edit.post');
+    Route::get('/posts/{post}/show', ShowPost::class)->name('show.post');
     Route::get('/upload', UploadImages::class)->name('upload');
     Route::post('/upload-images', [ImageUploader::class, 'upload'])->name('image.upload');
     Route::post('/delete-image', [ImageUploader::class, 'delete'])->name('image.delete');

@@ -28,6 +28,7 @@ class Category extends Component
             })
             ->with(['media', 'category'])
             ->take($this->limit)
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('livewire.category')
             ->with('posts', $posts);
