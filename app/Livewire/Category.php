@@ -2,10 +2,11 @@
 
 namespace App\Livewire;
 
-use App\Models\Category as CategoryModel;
 use App\Models\Post;
 use App\Traits\Load;
 use Livewire\Component;
+use Livewire\Attributes\Session;
+use App\Models\Category as CategoryModel;
 
 class Category extends Component
 {
@@ -14,11 +15,18 @@ class Category extends Component
 
     public $slug;
 
+    #[Session]
     public string $search = '';
+    public string $queryParam  = '';
 
     public function mount($slug = null)
     {
         $this->slug = $slug;
+    }
+
+    public function query()
+    {
+        $this->queryParam = $this->search;
     }
 
     public function render()
@@ -30,8 +38,8 @@ class Category extends Component
             })
             ->when($this->search, function ($query){
                 return $query
-                    ->where('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('description', 'like', '%' . $this->search . '%');
+                    ->where('title', 'like', '%' . $this->queryParam . '%')
+                    ->orWhere('description', 'like', '%' . $this->queryParam . '%');
             })
             ->with(['media', 'category'])
             ->take($this->limit)
