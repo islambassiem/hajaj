@@ -14,6 +14,7 @@ class ChatBox extends Component
     public $body;
     public $loadedMessages;
     public $paginate_var = 10;
+    protected $listeners = ['loadMore'];
 
 
 
@@ -47,7 +48,15 @@ class ChatBox extends Component
             ->skip($count - $this->paginate_var)
             ->take($this->paginate_var)
             ->get();
+
         return $this->loadedMessages;
+    }
+
+    public function loadMore()
+    {
+        $this->paginate_var += 10;
+        $this->loadMessages();
+        $this->dispatch('update-chat-height');
     }
 
     public function sendMessage()
@@ -68,6 +77,11 @@ class ChatBox extends Component
         $this->dispatch('scroll-bottom');
 
         $this->loadedMessages->push($createdMessage);
+
+        $this->selectedConversation->updated_at = now();
+        $this->selectedConversation->save();
+
+        $this->dispatch('refresh')->to('chat.chat-list');
     }
 
     public function mount()
@@ -80,8 +94,6 @@ class ChatBox extends Component
     #[Layout('layouts.app')]
     public function render()
     {
-        return view('livewire.chat.chat-box', [
-            'selectedConversation' => collect([])
-        ]);
+        return view('livewire.chat.chat-box');
     }
 }

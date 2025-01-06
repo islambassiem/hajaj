@@ -20,6 +20,9 @@ class ShowPost extends Component
     public function message($userId)
     {
         $authenticatedUserId = Auth::id();
+        if (!$authenticatedUserId) {
+            return redirect()->route('login');
+        }
         $existingConversation = Conversation::query()
         ->where(function ($query) use ($authenticatedUserId, $userId) {
             $query->where('sender_id', $authenticatedUserId)

@@ -3,9 +3,12 @@
     conversationElement: document.getElementById('conversation'),
     markAsRead: null
 }" x-init="height = conversationElement.scrollHeight;
-$nextTick(() => conversationElement.scrollTop = height);"
-    @scroll-bottom.window="$nextTick(()=>conversationElement.scrollTop= conversationElement.scrollHeight
-    );
+$nextTick(() => conversationElement.scrollTop = conversationElement.scrollHeight);"
+@scroll-bottom.window="
+$nextTick(()=>
+conversationElement.scrollTop= conversationElement.scrollHeight
+);
+"
     "
     class="w-full overflow-hidden">
 
@@ -46,19 +49,14 @@ $nextTick(() => conversationElement.scrollTop = height);"
 
         </header>
 
-
         {{-- body --}}
         <main
             @scroll="
-        scropTop = $el.scrollTop;
-
-        if(scropTop <= 0){
-
-        window.livewire.emit('loadMore');
-
-        }
-
-        "
+            scrollTop = $el.scrollTop;
+            if(scrollTop <= 0){
+                $dispatch('loadMore')
+            }
+            "
             @update-chat-height.window="
 
             newHeight= $el.scrollHeight;
