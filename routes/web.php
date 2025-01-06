@@ -5,6 +5,8 @@ use App\Livewire\Post;
 use App\Livewire\Category;
 use App\Livewire\EditPost;
 use App\Livewire\ShowPost;
+use App\Livewire\Chat\Chat;
+use App\Livewire\Chat\Index;
 use App\Livewire\CreatePost;
 use App\Livewire\UploadImages;
 use App\Http\Middleware\SetLocale;
@@ -58,6 +60,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/upload', UploadImages::class)->name('upload');
     Route::post('/upload-images', [ImageUploader::class, 'upload'])->name('image.upload');
     Route::post('/delete-image', [ImageUploader::class, 'delete'])->name('image.delete');
+
+    Route::get('chat', Index::class)->name('chat.index');
+    Route::get('chat/{query}', Chat::class)->name('chat');
 });
 
 
