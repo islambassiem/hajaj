@@ -70,7 +70,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function conversations()
     {
-        return $this->hasMany(Conversation::class,'sender_id')->orWhere('receiver_id',$this->id);
+        return $this->hasMany(Conversation::class,'sender_id')
+            ->orWhere('receiver_id',$this->id)
+            ->whereNotDeleted();
     }
 
     public static function unreadMessagesCount() : int {
