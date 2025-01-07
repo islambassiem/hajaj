@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Conversation;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -71,4 +72,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Conversation::class,'sender_id')->orWhere('receiver_id',$this->id);
     }
+
+    public static function unreadMessagesCount() : int {
+        return Message::query()
+            ->where('receiver_id', Auth::user()->id)
+            ->whereNull('read_at')
+            ->count();
+    }
+
 }
