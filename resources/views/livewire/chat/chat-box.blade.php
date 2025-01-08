@@ -26,9 +26,9 @@
                 </a>
                 {{-- avatar --}}
                 <div class="shrink-0">
-                    <x-avatar class="h-9 w-9 lg:w-11 lg:h-11" />
+                    <x-avatar class="h-9 w-9 lg:w-11 lg:h-11" src="{{ is_null($selectedConversation->getReceiver()->profile_photo_path) ? null : asset('storage/' . $selectedConversation->getReceiver()->profile_photo_path) }}" />
                 </div>
-                <h6 class="font-bold truncate text-gray-800 dark:text-neutral-300"> {{ $selectedConversation->getReceiver()->email }} </h6>
+                <h6 class="font-bold truncate text-gray-800 dark:text-neutral-300"> {{ $selectedConversation->getReceiver()->name }} </h6>
             </div>
         </header>
 
@@ -68,7 +68,7 @@
                     'invisible' => $previousMessage?->sender_id == $message->sender_id,
                     'hidden' => $message->sender_id === auth()->id(),
                 ])>
-                    <x-avatar />
+                    <x-avatar src="{{ is_null($message->receiver->profile_photo_path) ? null : asset('storage/' . $message->receiver->profile_photo_path) }}"></x-avatar>
                 </div>
                 {{-- messsage body bg-[#f6f6f8fb]--}}
                 <div @class([
@@ -134,11 +134,11 @@
         <form x-data="{ body: $wire.entangle('body') }" @submit.prevent="$wire.sendMessage" method="POST" autocapitalize="off">
             @csrf
             <input type="hidden" autocomplete="false" style="display:none">
-            <div class="grid grid-cols-11 gap-2">
+            <div class="grid grid-cols-12 gap-2">
                 <input x-model="body" type="text" autocomplete="off" autofocus placeholder="write your message here"
                     maxlength="1700"
-                    class="col-span-10 bg-gray-200/50 dark:bg-gray-800 border-0 outline-0 focus:border-0 focus:ring-0 hover:ring-0 rounded-lg  focus:outline-none dark:text-neutral-300">
-                <button x-bind:disabled="!body" class="col-span-1 border-2 border-gray-800 dark:border-gray-100 shadow-lg bg-indigo-500 hover:bg-indigo-300 hover:text-gray-100 text-neutral-300 dark:text-neutral-300 rounded-2xl" type='submit'>Send</button>
+                    class="col-span-10 md:col-span-11 bg-gray-200/50 dark:bg-gray-800 border-0 outline-0 focus:border-0 focus:ring-0 hover:ring-0 rounded-lg  focus:outline-none dark:text-neutral-300">
+                <button x-bind:disabled="!body" class="col-span-2 md:col-span-1 border-2 border-gray-800 dark:border-gray-100 shadow-lg bg-indigo-500 hover:bg-indigo-300 hover:text-gray-100 text-neutral-300 dark:text-neutral-300 rounded-2xl" type='submit'>Send</button>
             </div>
 
         </form>

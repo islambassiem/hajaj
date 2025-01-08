@@ -26,26 +26,30 @@ class ChatBox extends Component
         #get count
         $count = Message::query()
             ->where('conversation_id', $this->selectedConversation->id)
-            ->where(function ($query) use ($userId) {
-                $query->where('sender_id', $userId)
-                    ->whereNull('sender_deleted_at');
-            })
-            ->orWhere(function ($query) use ($userId) {
-                $query->where('receiver_id', $userId)
-                    ->whereNull('receiver_deleted_at');
+            ->where(function($query) use ($userId){
+                $query->where(function($query) use ($userId){
+                    $query->where('sender_id', $userId)
+                        ->whereNull('sender_deleted_at');
+                })
+                ->orWhere(function($query) use ($userId){
+                    $query->where('receiver_id', $userId)
+                        ->whereNull('receiver_deleted_at');
+                });
             })
             ->count();
 
         #skip and query
         $this->loadedMessages = Message::query()
             ->where('conversation_id', $this->selectedConversation->id)
-            ->where(function ($query) use ($userId) {
-                $query->where('sender_id', $userId)
-                    ->whereNull('sender_deleted_at');
-            })
-            ->orWhere(function ($query) use ($userId) {
-                $query->where('receiver_id', $userId)
-                    ->whereNull('receiver_deleted_at');
+            ->where(function($query) use ($userId){
+                $query->where(function($query) use ($userId){
+                    $query->where('sender_id', $userId)
+                        ->whereNull('sender_deleted_at');
+                })
+                ->orWhere(function($query) use ($userId){
+                    $query->where('receiver_id', $userId)
+                        ->whereNull('receiver_deleted_at');
+                });
             })
             ->skip($count - $this->paginate_var)
             ->take($this->paginate_var)

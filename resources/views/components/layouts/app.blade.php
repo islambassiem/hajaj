@@ -206,13 +206,7 @@
                                     x-bind:class="userDropdownIsOpen ? 'bg-black/10 dark:bg-white/10' : ''"
                                     aria-haspopup="true" x-on:click="userDropdownIsOpen = ! userDropdownIsOpen"
                                     x-bind:aria-expanded="userDropdownIsOpen">
-                                    {{-- <img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-7.webp" class="size-8 object-cover rounded-md" alt="avatar" aria-hidden="true" /> --}}
-                                    <div class="object-cover rounded-md" alt="avatar" aria-hidden="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="size-8" viewBox="0 0 16 16">
-                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                                          </svg>
-                                    </div>
+                                    <x-avatar src="{{ is_null(auth()->user()->profile_photo_path) ? null : asset('storage/' . auth()->user()->profile_photo_path) }}"></x-avatar>
                                     <div class="hidden md:flex flex-col">
                                         <span class="text-sm font-bold text-neutral-900 dark:text-white">{{ Str::of(auth()->user()->name)->before(' ') }}</span>
                                         <span class="text-xs" aria-hidden="true">{{ Str::of(auth()->user()->email)->before('@') }}</span>
@@ -262,6 +256,18 @@
                                             </svg>
                                             <span>Payments</span>
                                         </a> --}}
+                                    </div>
+
+                                    <div class="flex flex-col py-1.5">
+                                        <a href="{{ route('chat.index') }}"
+                                            class="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-none dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
+                                            role="menuitem">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16">
+                                                <path d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2M3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.39.39 0 0 0-.029-.518z"/>
+                                                <path fill-rule="evenodd" d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.95 11.95 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0"/>
+                                              </svg>
+                                            <span>Chat</span>
+                                        </a>
                                     </div>
 
                                     <div class="flex flex-col py-1.5">

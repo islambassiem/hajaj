@@ -43,14 +43,19 @@
                 @endforeach
             </div>
         </div>
-        <p class="py-4 text-justify text-lg">{{ $post->description }}</p>
+        <p class="py-1 font-bold underline text-neutral-500 dark:text-neutral-300">{{ __('Price') }}:</p>
+        <p>${{ number_format($post->price, 2) }}</p>
+        <p class="py-1 font-bold underline text-neutral-500 dark:text-neutral-300">{{ __('Description') }}:</p>
+        <p class="text-justify text-lg">{{ $post->description }}</p>
     </div>
-    <div class="mt-3">
-        <p class="font-bold">{{ __('Seller Information') }}</p>
-        <a class="flex items-center gap-3 mt-3 hover:underline cursor-pointer" wire:click="message({{ $post->user->id }})">
-            <x-avatar src="https://picsum.photos/200"/>
-            <span>{{ $post->user->name }}</span>
-        </a>
-        <p class="mt-2 text-neutral-500 dark:text-neutral-400 text-xs">{{ $post->created_at->diffForHumans() }}</p>
-    </div>
+    @if ($post->user_id !== auth()->user()->id)
+        <div class="mt-3">
+            <p class="font-bold">{{ __('Seller Information') }}</p>
+            <a class="flex items-center gap-3 mt-3 hover:underline cursor-pointer" wire:click="message({{ $post->user->id }})">
+                <x-avatar src="{{ is_null($post->user->profile_photo_path) ? null : asset('storage/' . $post->user->profile_photo_path) }}"/>
+                <span>{{ $post->user->name }}</span>
+            </a>
+            <p class="mt-2 text-neutral-500 dark:text-neutral-400 text-xs">{{ $post->created_at->diffForHumans() }}</p>
+        </div>
+    @endif
 </div>

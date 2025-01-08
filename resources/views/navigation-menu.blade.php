@@ -160,7 +160,7 @@
                     </div>
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                            {{-- @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button
                                     class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                     <img class="size-8 rounded-full object-cover"
@@ -179,7 +179,8 @@
                                         </svg>
                                     </button>
                                 </span>
-                            @endif
+                            @endif --}}
+                            <x-avatar src="{{ is_null(auth()->user()->profile_photo_path) ? null : asset('storage/' . auth()->user()->profile_photo_path) }}"></x-avatar>
                         </x-slot>
 
                         <x-slot name="content">
@@ -299,6 +300,10 @@
 
                 <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.*')">
+                    {{ __('Chat') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="{{ route('category') }}" :active="request()->routeIs('category')">
