@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Chat;
 
+use App\Mail\MessageSent;
 use App\Models\Message;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ChatBox extends Component
 {
@@ -82,6 +84,10 @@ class ChatBox extends Component
         $this->selectedConversation->save();
 
         $this->dispatch('refresh')->to('chat.chat-list');
+
+        // dd($createdMessage->receiver->name, $createdMessage->sender->name, $createdMessage->body);
+
+        Mail::queue(new MessageSent($createdMessage));
     }
 
     public function mount()
