@@ -68,7 +68,7 @@
                     'invisible' => $previousMessage?->sender_id == $message->sender_id,
                     'hidden' => $message->sender_id === auth()->id(),
                 ])>
-                    <x-avatar src="{{ is_null($message->receiver->profile_photo_path) ? null : asset('storage/' . $message->receiver->profile_photo_path) }}"></x-avatar>
+                    <x-avatar src="{{ is_null($message->sender->profile_photo_path) ? null : asset('storage/' . $message->sender->profile_photo_path) }}"></x-avatar>
                 </div>
                 {{-- messsage body bg-[#f6f6f8fb]--}}
                 <div @class([
