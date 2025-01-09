@@ -48,7 +48,7 @@
         <p class="py-1 font-bold underline text-neutral-500 dark:text-neutral-300">{{ __('Description') }}:</p>
         <p class="text-justify text-lg">{{ $post->description }}</p>
     </div>
-    @if ($post->user_id !== auth()->user()->id)
+    @if ($post->user_id !== auth()->user()?->id)
         <div class="mt-3">
             <p class="font-bold">{{ __('Seller Information') }}</p>
             <a class="flex items-center gap-3 mt-3 hover:underline cursor-pointer" wire:click="message({{ $post->user->id }})">
