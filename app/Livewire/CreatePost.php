@@ -49,7 +49,14 @@ class CreatePost extends Component
 
     public function save()
     {
-        $this->validate();
+        $this->validate(
+            attributes: [
+                'title' => __('Title'),
+                "price" => __('Price'),
+                "childId" => __('Sub category'),
+                "description" => __("Description")
+            ]
+        );
 
         $post = Post::create([
             'title' => $this->title,
@@ -62,7 +69,7 @@ class CreatePost extends Component
             ->route('upload')
             ->with('post_id', $post->id);
     }
-    
+
     #[Layout('layouts.app')]
     public function render()
     {

@@ -4,7 +4,7 @@
     </div>
 
     <div class="p-4 col-span-12 lg:col-span-4  border-2 border-dashed rounded-lg  dark:text-white">
-        <div class="text-2xl font-bold mb-5">Similar Products</div>
+        <div class="text-2xl font-bold mb-5">{{ __('Similar Products') }}</div>
         <div>
             @foreach ($similar as $item)
                 <a href="{{ route('post', $item->id) }}">

@@ -180,7 +180,8 @@
                                     </button>
                                 </span>
                             @endif --}}
-                            <x-avatar src="{{ is_null(auth()->user()->profile_photo_path) ? null : asset('storage/' . auth()->user()->profile_photo_path) }}"></x-avatar>
+                            <x-avatar
+                                src="{{ is_null(auth()->user()->profile_photo_path) ? null : asset('storage/' . auth()->user()->profile_photo_path) }}"></x-avatar>
                         </x-slot>
 
                         <x-slot name="content">
@@ -198,7 +199,7 @@
                                         <path
                                             d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
                                     </svg>
-                                    <span>Profile</span>
+                                    <span>{{ __('Profile') }}</span>
                                 </a>
                             </div>
                             <hr>
@@ -214,7 +215,7 @@
                                         <path fill-rule="evenodd"
                                             d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.95 11.95 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0" />
                                     </svg>
-                                    <span>Dashboard</span>
+                                    <span>{{ __('Dashboard') }}</span>
                                 </a>
                             </div>
 
@@ -227,7 +228,7 @@
                                         <path
                                             d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
                                     </svg>
-                                    <span>Home</span>
+                                    <span>{{ __('Home') }}</span>
                                 </a>
                             </div>
 
@@ -244,7 +245,7 @@
                                 @csrf
 
                                 <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Logout') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
@@ -303,7 +304,7 @@
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.*')">
-                    {{ __('Chat') }}
+                    {{ __('Messages') }}
                 </x-responsive-nav-link>
 
                 <x-responsive-nav-link href="{{ route('category') }}" :active="request()->routeIs('category')">
@@ -321,7 +322,7 @@
                     @csrf
 
                     <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Logout') }}
                     </x-responsive-nav-link>
                 </form>
 

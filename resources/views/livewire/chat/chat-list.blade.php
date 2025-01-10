@@ -18,7 +18,7 @@
         <div class="border-b justify-between flex items-center pb-2">
 
             <div class="flex items-center gap-2">
-                <h5 class="font-extrabold text-2xl">Chats</h5>
+                <h5 class="font-extrabold text-2xl">{{ __('Messages') }}</h5>
             </div>
 
             <button class="hidden lg:inline">
@@ -88,7 +88,7 @@
                         @csrf
 
                         <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                            {{ __('Log Out') }}
+                            {{ __('Logout') }}
                         </x-responsive-nav-link>
                     </form>
 

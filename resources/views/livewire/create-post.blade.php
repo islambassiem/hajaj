@@ -8,11 +8,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6 m-6">
-                <form id="postForm" action="{{ route('create.post') }}" method="post" enctype="multipart/form-data" wire:submit="save">
+                <form id="postForm" action="{{ route('create.post') }}" method="post" enctype="multipart/form-data"
+                    wire:submit="save">
                     @csrf
                     <div class="grid grid-cols-12 gap-2">
                         <div class="col-span-12 lg:col-span-6">
-                            <div class="flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300 mb-5">
+                            <div
+                                class="flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300 mb-5">
                                 <label for="title"
                                     class="flex w-fit items-center gap-1 text-sm @error('title') text-red-500 @enderror">
                                     @error('title')
@@ -26,13 +28,14 @@
                                 </label>
                                 <input wire:model="title" id="title" type="text"
                                     class="@error('title') border-red-500 placeholder:text-red-500 @enderror w-full rounded-md border bg-neutral-50 px-2 pt-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white"
-                                    placeholder="{{ __("Title to your Ad") }}" autocomplete="title" />
+                                    placeholder="{{ __('Title to your Ad') }}" autocomplete="title" />
                                 @error('title')
                                     <span class="text-sm text-red-500">{{ $message }}</span>
                                 @enderror
                             </div>
 
-                            <div class="flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300 mb-5">
+                            <div
+                                class="flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300 mb-5">
                                 <label for="description"
                                     class="flex w-fit items-center gap-1 text-sm @error('price') text-red-500 @enderror">
                                     @error('price')
@@ -46,7 +49,7 @@
                                 </label>
                                 <input wire:model="price" id="price" type="number"
                                     class="@error('price') border-red-500 placeholder:text-red-500 @enderror w-full rounded-md border bg-neutral-50 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white"
-                                    placeholder="{{ __('Approximate price for your good') }}" autocomplete="price" />
+                                    placeholder="{{ __('Approximate price for your product') }}" autocomplete="price" />
                                 @error('price')
                                     <span class="text-sm text-red-500">{{ $message }}</span>
                                 @enderror
@@ -66,7 +69,8 @@
                                 </select>
                             </div>
 
-                            <div class="relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                            <div
+                                class="relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
                                 <label for="child" class="w-fit pl-0.5 text-sm">{{ __('Sub category') }}</label>
                                 <select wire:model.live="childId" id="child"
                                     class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
@@ -84,7 +88,8 @@
                         </div>
                         <div class="col-span-12 lg:col-span-6">
 
-                            <div class="flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300 mb-5">
+                            <div
+                                class="flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300 mb-5">
                                 <label for="description"
                                     class="flex w-fit items-center gap-1 text-sm @error('description') text-red-500 @enderror">
                                     @error('description')
@@ -98,7 +103,7 @@
                                 </label>
                                 <textarea wire:model="description" id="description"
                                     class="@error('description') border-red-500 placeholder:text-red-500 @enderror w-full min-h-72 rounded-md border bg-neutral-50 px-2.5 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white"
-                                    rows="10" placeholder="{{ __('All information about your good') }}"></textarea>
+                                    rows="10" placeholder="{{ __('All information about your product') }}"></textarea>
                                 @error('description')
                                     <span class="text-sm text-red-500">{{ $message }}</span>
                                 @enderror
@@ -107,7 +112,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <x-button type="submit">Next</x-button>
+                        <x-button type="submit">{{ __('Next') }}</x-button>
                     </div>
                 </form>
             </div>

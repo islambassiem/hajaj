@@ -10,7 +10,7 @@
 
         <div class="m-auto text-center justify-center flex flex-col gap-3">
 
-            <h4 class="font-medium text-lg text-neutral-800 dark:text-neutral-300"> Choose a conversation to start chatting </h4>
+            <h4 class="font-medium text-lg text-neutral-800 dark:text-neutral-300"> {{ __('Choose a conversation to start chatting') }} </h4>
 
         </div>
 

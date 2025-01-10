@@ -34,7 +34,7 @@
                 dictDefaultMessage: "{{ __('Drop files here to upload') }}",
                 dictRemoveFile: "Remove",
                 // maxFilesize: 2, // MB
-                acceptedFiles: ".jpeg, .png, .jpg, .gif, .svg",
+                // acceptedFiles: ".jpeg, .png, .jpg, .gif, .svg",
                 addRemoveLinks: true,
                 maxfilesexceeded: function(file) {
                     this.removeFile(file);

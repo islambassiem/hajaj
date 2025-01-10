@@ -57,7 +57,7 @@
                     </g>
                 </svg> --}}
                 <x-application-mark class="block h-9 w-auto mx-auto" />
-                <span class="text-gray-400">{{ env('APP_NAME', 'My App')}}</span>
+                <span class="text-gray-400">{{ env('APP_NAME', 'My App') }}</span>
             </a>
 
             <!-- search  -->
@@ -72,7 +72,7 @@
                 <input type="search"
                     class="w-full border border-neutral-300 rounded-md bg-white px-2 py-1.5 pl-9 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-950/50 dark:focus-visible:outline-white"
                     name="search" aria-label="Search" placeholder="Search" /> --}}
-                <div class="mt-6"><a href="{{ route('category') }}">Browse All</a></div>
+                <div class="mt-6"><a href="{{ route('category') }}">{{ __('Browse All') }}</a></div>
             </div>
 
             <!-- sidebar links  -->
@@ -132,7 +132,9 @@
                                     </svg>
                                 </li>
                                 <li class="flex items-center gap-1 font-bold text-neutral-900 dark:text-white"
-                                    aria-current="page">{{ app()->getLocale() === 'en' ? Str::ucfirst($activeCategory->name_en) : $activeCategory->name_ar }}</li>
+                                    aria-current="page">
+                                    {{ app()->getLocale() === 'en' ? Str::ucfirst($activeCategory->name_en) : $activeCategory->name_ar }}
+                                </li>
                             </ol>
                         </nav>
                     @else
@@ -206,10 +208,13 @@
                                     x-bind:class="userDropdownIsOpen ? 'bg-black/10 dark:bg-white/10' : ''"
                                     aria-haspopup="true" x-on:click="userDropdownIsOpen = ! userDropdownIsOpen"
                                     x-bind:aria-expanded="userDropdownIsOpen">
-                                    <x-avatar src="{{ is_null(auth()->user()->profile_photo_path) ? null : asset('storage/' . auth()->user()->profile_photo_path) }}"></x-avatar>
+                                    <x-avatar
+                                        src="{{ is_null(auth()->user()->profile_photo_path) ? null : asset('storage/' . auth()->user()->profile_photo_path) }}"></x-avatar>
                                     <div class="hidden md:flex flex-col">
-                                        <span class="text-sm font-bold text-neutral-900 dark:text-white">{{ Str::of(auth()->user()->name)->before(' ') }}</span>
-                                        <span class="text-xs" aria-hidden="true">{{ Str::of(auth()->user()->email)->before('@') }}</span>
+                                        <span
+                                            class="text-sm font-bold text-neutral-900 dark:text-white">{{ Str::of(auth()->user()->name)->before(' ') }}</span>
+                                        <span class="text-xs"
+                                            aria-hidden="true">{{ Str::of(auth()->user()->email)->before('@') }}</span>
                                         <span class="sr-only">profile settings</span>
                                     </div>
                                 </button>
@@ -231,7 +236,7 @@
                                                 <path
                                                     d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
                                             </svg>
-                                            <span>Profile</span>
+                                            <span>{{ __('Profile') }}</span>
                                         </a>
                                     </div>
 
@@ -239,11 +244,14 @@
                                         <a href="{{ route('dashboard') }}"
                                             class="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-none dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
                                             role="menuitem">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16">
-                                                <path d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2M3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.39.39 0 0 0-.029-.518z"/>
-                                                <path fill-rule="evenodd" d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.95 11.95 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0"/>
-                                              </svg>
-                                            <span>Dashboard</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2M3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.39.39 0 0 0-.029-.518z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.95 11.95 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0" />
+                                            </svg>
+                                            <span>{{ __('Dashboard') }}</span>
                                         </a>
                                         {{-- <a href="#"
                                             class="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-none dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
@@ -262,11 +270,14 @@
                                         <a href="{{ route('chat.index') }}"
                                             class="flex items-center gap-2 px-2 py-1.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-none dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"
                                             role="menuitem">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16">
-                                                <path d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2M3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.39.39 0 0 0-.029-.518z"/>
-                                                <path fill-rule="evenodd" d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.95 11.95 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0"/>
-                                              </svg>
-                                            <span>Chat</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2M3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.39.39 0 0 0-.029-.518z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.95 11.95 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0" />
+                                            </svg>
+                                            <span>{{ __('Messages') }}</span>
                                         </a>
                                     </div>
 
@@ -285,7 +296,7 @@
                                                         d="M6 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H6.75A.75.75 0 0 1 6 10Z"
                                                         clip-rule="evenodd" />
                                                 </svg>
-                                                <span>Logout</span>
+                                                <span>{{ __('Logout') }}</span>
                                             </a>
                                         </form>
                                     </div>
@@ -296,10 +307,10 @@
                         @guest
                             <div class="flex gap-4 py-2 ms-auto">
                                 <a href="{{ route('register') }}">
-                                    <x-button class="!bg-blue-500">Register</x-button>
+                                    <x-button class="!bg-blue-500">{{ __('Register') }}</x-button>
                                 </a>
                                 <a href="{{ route('login') }}">
-                                    <x-button class="!bg-green-500">Login</x-button>
+                                    <x-button class="!bg-green-500">{{ __('Login') }}</x-button>
                                 </a>
                             </div>
                         @endguest

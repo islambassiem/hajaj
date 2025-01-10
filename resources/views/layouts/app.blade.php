@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr" x-cloak x-data="{
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl" x-cloak x-data="{
     darkMode: localStorage.getItem('dark') === 'true',
     dir: localStorage.getItem('direction') || 'ltr',
     toggleDirection() {
