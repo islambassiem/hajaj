@@ -15,13 +15,17 @@ class ImageUploader extends Controller
      */
     public function upload(Request $request)
     {
-        $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2',
             'post_id'
         ],attributes: [
             'file' => __('file')
         ]);
-
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()
+            ], 404);
+        }
         $post_id = $request->post_id;
         $file = $request->file('file');
 

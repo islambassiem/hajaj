@@ -143,7 +143,7 @@
                     </div>
                 </form>
                 @if (count($images) < 10)
-                    <div class="py-12">
+                    {{-- <div class="py-12">
                         <div class="max-w-7xl mx-auto px-6 lg:px-8">
                             <form action="{{ route('image.upload') }}" id="my-dropzone"
                                 class="dropzone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg dark:text-neutral-200 bg-white dark:bg-gray-800">
@@ -161,7 +161,8 @@
                             </form>
                             <ul id="message" class="text-sm text-red-500 py-2"></ul>
                         </div>
-                    </div>
+                    </div> --}}
+                    <x-file-uploader :post_id="$post_id"/>
                 @endif
                 <div class="flex items-center justify-end mt-4">
                     <x-button type="submit" form="postForm">{{ __('Finish') }}</x-button>
