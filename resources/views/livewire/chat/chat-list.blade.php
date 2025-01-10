@@ -159,7 +159,7 @@
                     <li id="conversation-{{ $conversation->id }}" wire:key="{{ $conversation->id }}"
                         class="py-3 hover:bg-gray-50 rounded-2xl dark:hover:bg-gray-700/70 transition-colors duration-150 flex gap-4 relative w-full cursor-pointer px-2 {{ $conversation->id == $selectedConversation?->id ? 'bg-gray-200 dark:bg-gray-600' : '' }}">
                         <a href="#" class="shrink-0">
-                            <x-avatar src="{{ asset('storage/' . $conversation->getReceiver()->profile_photo_path) }}" />
+                            <x-avatar src="{{ is_null($conversation->getReceiver()->profile_photo_path) ? null : asset('storage/' . $conversation->getReceiver()->profile_photo_path) }}" />
                         </a>
 
                         <aside class="grid grid-cols-12 w-full">
