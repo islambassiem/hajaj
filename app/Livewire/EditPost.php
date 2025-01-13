@@ -2,14 +2,15 @@
 
 namespace App\Livewire;
 
-use App\Models\Post;
-use Livewire\Component;
 use App\Models\Category;
-use Livewire\Attributes\On;
+use App\Models\City;
+use App\Models\Post;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
-use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class EditPost extends Component
@@ -28,6 +29,11 @@ class EditPost extends Component
     public string $description;
 
     public $patentId;
+
+    public $provinceId;
+
+    #[Validate('required')]
+    public $cityId;
 
     #[Validate('required')]
     public $childId;
@@ -51,6 +57,12 @@ class EditPost extends Component
     }
 
     #[Computed()]
+    public function provinces()
+    {
+        return City::whereNull('province_id')->get(['id', 'city_en', 'city_ar']);
+    }
+
+    #[Computed()]
     public function children()
     {
         if (!is_null($this->patentId)) {
@@ -59,14 +71,32 @@ class EditPost extends Component
         return collect();
     }
 
+    #[Computed()]
+    public function cities()
+    {
+        if (!is_null($this->provinceId)) {
+            return City::where('province_id', $this->provinceId)->get(['id', 'city_en', 'city_ar']);
+        }
+        return collect();
+    }
+
     public function save()
     {
-        $this->validate();
+        $this->validate(
+            attributes: [
+                'title' => __('Title'),
+                "price" => __('Price'),
+                "childId" => __('Sub category'),
+                "cityId" => __('City'),
+                "description" => __("Description")
+            ]
+        );
         $post = Post::find($this->post_id);
         $post->update([
             'title' => $this->title,
             'price' => $this->price,
             'category_id' => $this->childId,
+            'city_id' => $this->cityId,
             'description' => $this->description
         ]);
         return redirect()->route('dashboard');

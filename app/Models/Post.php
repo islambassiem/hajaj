@@ -17,7 +17,7 @@ class Post extends Model implements HasMedia
     protected $table = 'posts';
 
     protected $fillable = [
-        'user_id', 'category_id', 'title', 'description', 'price'
+        'user_id', 'category_id', 'title', 'description', 'price', 'city_id'
     ];
 
     public function user(): BelongsTo
@@ -33,5 +33,10 @@ class Post extends Model implements HasMedia
     public function parentCategory()
     {
         return $this->category->parent;
+    }
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }

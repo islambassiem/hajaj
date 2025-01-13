@@ -16,7 +16,7 @@ class ImageUploader extends Controller
     public function upload(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'post_id'
         ],attributes: [
             'file' => __('file')
@@ -24,7 +24,7 @@ class ImageUploader extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'error' => $validator->errors()
-            ], 404);
+            ], 422);
         }
         $post_id = $request->post_id;
         $file = $request->file('file');

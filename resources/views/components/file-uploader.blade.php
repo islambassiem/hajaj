@@ -13,9 +13,11 @@
         .file-list .file-item:last-child {
             margin-bottom: 0px;
         }
+
         .file-uploader .file-upload-box.active .box-title {
             pointer-events: none;
         }
+
         .file-upload-box .box-title .file-browse-button:hover {
             text-decoration: underline;
         }
@@ -27,14 +29,17 @@
 
 <div class="file-uploader w-10/12 m-auto mt-5 shadow-xl pb-4 bg-white dark:bg-gray-100">
     <div class="uploader-header flex justify-between items-center p-5 rounded-md bg-indigo-400/50 dark:text-neutral-300">
-        <h2 class="uploader-title text-xl font-bold text-neutral-700 dark:text-neutral-600">{{ __('Image Uploader') }}</h2>
+        <h2 class="uploader-title text-xl font-bold text-neutral-700 dark:text-neutral-600">{{ __('Image Uploader') }}
+        </h2>
         <h4 class="file-completed-status text-base font-medium text-[#333]"></h4>
     </div>
     <ul class="file-list list-none w-full pb-3 max-h-[400px] overflow-y-auto scroll"></ul>
-    <div class="file-upload-box bg-red-600 my-3 mx-5 rounded-md min-h-[100px] flex justify-center items-center border-2 border-dashed border-[#B1ADD4] transition-all duration-200 ease-in active:border-2 active:border-solid active:border-[#5145BA] bg-neutral-100/50 dark:bg-gray-800 ">
+    <div
+        class="file-upload-box  my-3 mx-5 rounded-md min-h-[100px] flex justify-center items-center border-2 border-dashed border-[#B1ADD4] transition-all duration-200 ease-in active:border-2 active:border-solid active:border-[#5145BA] bg-neutral-100/50 dark:bg-gray-800 ">
         <h2 class="box-title text-lg font-medium dark:text-neutral-300">
             <span class="file-instruction">{{ __('Drag files here or') }}</span>
-            <span class="file-browse-button text-indigo-700 dark:text-indigo-300 cursor-pointer hover:underline">{{ __('browse') }}</span>
+            <span
+                class="file-browse-button text-indigo-700 dark:text-indigo-300 cursor-pointer hover:underline">{{ __('browse') }}</span>
         </h2>
         <input class="file" type="file" multiple hidden accept=".jpeg, .png, .jpg, .gif, .svg" />
     </div>
@@ -45,6 +50,7 @@
             const fileBrowseInput = document.querySelector(".file");
             const fileUploadBox = document.querySelector(".file-upload-box");
             const fileCompletedStatus = document.querySelector(".file-completed-status");
+            const errors = document.querySelector("#errors");
             let totalFiles = 0;
             let completedFiles = 0;
             // Function to create HTML for each file item
@@ -73,13 +79,16 @@
                     </div>
                     </div>
                     <button class="cancel-button self-center border-none outline-none bg-transparent cursor-pointer text-2xl hover:text-[#E3413F]">
-                        <i class="bx bx-x"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                        </svg>
                     </button>
                 </div>
+                <div id="errors"></div>
                 <div class="file-progress-bar w-full h-1 mt-3 rounded-3xl bg-[#d9d9d9]">
                     <div class="file-progress w-0 bg-[#5145BA]" style="height: inherit; border-radius: inherit;"></div>
                 </div>
-                </div>
+                </>
             </li>`;
             }
 
@@ -128,15 +137,23 @@
                     }
                     xhr.addEventListener("readystatechange", () => {
                         // Handling completion of file upload
-                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                            completedFiles++;
-                            cancelFileUploadButton.remove();
-                            updateFileStatus("{{ __('Done.') }}", "#00B125");
-                            fileCompletedStatus.innerText =
-                                `${completedFiles} / ${totalFiles} {{ __('files completed') }}`;
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                completedFiles++;
+                                cancelFileUploadButton.remove();
+                                updateFileStatus("{{ __('Done.') }}", "#00B125");
+                                fileCompletedStatus.innerText =
+                                    `${completedFiles} / ${totalFiles} {{ __('files completed') }}`;
+                            }
                         } else {
                             updateFileStatus("{{ __('Error') }}", "#E3413F");
-                            // JSON.parse(xhr.responseText).error.file.join(" | ")
+                            if (xhr.responseText.trim()) {
+                                const response = JSON.parse(xhr.responseText);
+                                if (response.error) {
+                                    displayErrors(response.error); // Call the function to render errors
+                                }
+                            }
+
                         }
                     });
                     // Handling cancellation of file upload
@@ -172,9 +189,39 @@
                 fileUploadBox.classList.remove("active");
                 fileUploadBox.querySelector(".file-instruction").innerText = "{{ __('Drag files here or') }}";
             });
+
+            function displayErrors(errors) {
+                const errorsDiv = document.getElementById("errors");
+                errorsDiv.innerHTML = ""; // Clear any previous errors
+
+                // Check if errors are in array form or an object
+                if (Array.isArray(errors)) {
+                    errors.forEach(error => {
+                        const errorParagraph = document.createElement("p");
+                        errorParagraph.textContent = error;
+                        errorParagraph.className = "text-red-500"; // Add some styling
+                        errorsDiv.appendChild(errorParagraph);
+                    });
+                } else if (typeof errors === "object") {
+                    for (const [field, messages] of Object.entries(errors)) {
+                        messages.forEach(message => {
+                            const errorParagraph = document.createElement("p");
+                            errorParagraph.textContent = message;
+                            errorParagraph.className = "text-red-500"; // Add some styling
+                            errorsDiv.appendChild(errorParagraph);
+                        });
+                    }
+                } else {
+                    // If errors are not in an array or object, handle as a string
+                    const errorParagraph = document.createElement("p");
+                    errorParagraph.textContent = errors;
+                    errorParagraph.className = "text-red-500"; // Add some styling
+                    errorsDiv.appendChild(errorParagraph);
+                }
+            }
+
             fileBrowseInput.addEventListener("change", (e) => handleSelectedFiles(e.target.files));
             fileBrowseButton.addEventListener("click", () => fileBrowseInput.click());
-
         </script>
     @endsection
 </div>

@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Category;
 use App\Models\City;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,14 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Category::class);
-            $table->foreignIdFor(City::class);
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->integer('price')->default(0);
+            $table->string('city_en');
+            $table->string('city_ar');
+            $table->foreignIdFor(City::class, 'province_id')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('cities');
     }
 };

@@ -7,6 +7,14 @@ use Livewire\Component;
 
 class UploadImages extends Component
 {
+
+    public $post_id;
+
+    public function mount($post_id)
+    {
+        $this->post_id = $post_id;
+    }
+
     #[Layout('layouts.app')]
     public function render()
     {

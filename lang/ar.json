@@ -71,6 +71,12 @@
     "Error": "خطأ",
     "Cancelled": "تم الالغاء",
     "An error occurred during the file upload!": "حدث خطأ أثناء رفع الملف",
+    "No Ads yet": "لا يوجد اعلانات حتى الان",
+    "Create One": "انشء واحداً",
+    "Province" : "المقاطعة",
+    "City" : "المدينة",
+    "Are you sure you want to delete this post?": "هل أنت متأكد من حذف هذا الاعلان؟",
+    "An unexpected error occurred": "حدث خطاء غير متوقع",
 
     "validation.max.file": "الحد الاقصى للصورة هو ٢ ميجابايت",
     "Whoops! Something went wrong.": "حدث خطأ",

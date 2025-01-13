@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\City;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,9 +21,11 @@ class PostFactory extends Factory
     {
         $user       = collect(User::all())->random();
         $category   = collect(Category::whereNotNull('parent_id')->get())->random();
+        $city       = collect(\App\Models\City::whereNotNull('province_id')->get())->random();
         return [
           'user_id' => $user->id,
           'category_id' => $category->id,
+          'city_id' => $city->id,
           'title' => fake()->sentence(),
           'description' => fake()->sentence(100),
           'price' => fake()->randomNumber(3)
