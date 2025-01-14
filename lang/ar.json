@@ -77,6 +77,8 @@
     "City" : "المدينة",
     "Are you sure you want to delete this post?": "هل أنت متأكد من حذف هذا الاعلان؟",
     "An unexpected error occurred": "حدث خطاء غير متوقع",
+    "Edit an Ad": "تعديل الاعلان",
+    "Are you sure you want to delete this image?": "هل تريد حذف هذه الصورة؟",
 
     "validation.max.file": "الحد الاقصى للصورة هو ٢ ميجابايت",
     "Whoops! Something went wrong.": "حدث خطأ",

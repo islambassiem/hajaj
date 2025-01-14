@@ -46,7 +46,10 @@ class EditPost extends Component
         $this->title = $post->title;
         $this->price = $post->price;
         $this->description = $post->description;
+        $this->patentId = $post->category->parent_id;
         $this->childId = $post->category_id;
+        $this->cityId = $post->city_id;
+        $this->provinceId = City::find($post->city_id)->parent->id;
         $this->images = $post->getMedia();
     }
 
@@ -104,7 +107,7 @@ class EditPost extends Component
 
     public function delete($image)
     {
-        $media = Media::findorFail($image);
+        $media = Media::findOrFail($image);
         $media->delete();
         $this->dispatch('media-deleted');
     }

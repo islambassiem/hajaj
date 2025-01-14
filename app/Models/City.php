@@ -9,6 +9,11 @@ class City extends Model
     protected $table = 'cities';
 
     protected $fillable = [
-        'city_ar', 'city_en', 'parent_id'
+        'city_ar', 'city_en', 'province_id'
     ];
+
+    public function parent()
+    {
+        return $this->belongsTo(City::class, 'province_id', 'id');
+    }
 }

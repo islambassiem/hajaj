@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Create an Ad') }}
+            {{ __('Edit an Ad') }}
         </h2>
     </x-slot>
 
@@ -155,7 +155,7 @@
                                 <button x-show="open" type="button"
                                     wire:confirm="{{ __('Are you sure you want to delete this image?') }}"
                                     wire:click="delete({{ $media->id }})"
-                                    class="absolute top-0 right-0 rtl:left-0 z-20 flex justify-center items-center gap-x-2">
+                                    class="absolute top-0 right-0 rtl:left-0 z-20  gap-x-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="size-8">
                                         <path fill="#afc4e1"
                                             d="M50,21H14v36c0,1.105,0.895,2,2,2h32c1.105,0,2-0.895,2-2V21z" />
@@ -173,31 +173,12 @@
                                     </svg>
                                 </button>
                                 <img src="{{ $media->getUrl() }}" alt="{{ $media->name }}"
-                                    class="object-cover w-full h-full rounded-lg shadow-xl group-hover:scale-105  transition duration-700 ease-out hover:opacity-25">
+                                    class="object-cover w-[600px] h-[400px] rounded-lg shadow-xl group-hover:scale-105  transition duration-700 ease-out hover:opacity-25">
                             </div>
                         @endforeach
                     </div>
                 </form>
                 @if (count($images) < 10)
-                    {{-- <div class="py-12">
-                        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                            <form action="{{ route('image.upload') }}" id="my-dropzone"
-                                class="dropzone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg dark:text-neutral-200 bg-white dark:bg-gray-800">
-                                @csrf
-                                @method('POST')
-                                <input type="hidden" name="post_id" value="{{ $this->post_id }}">
-                                <div class="flex justify-center items-center" id="uploader">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="size-10 -mb-5 mt-7 text-indigo-500"
-                                        viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0m-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0" />
-                                    </svg>
-                                </div>
-                            </form>
-                            <ul id="message" class="text-sm text-red-500 py-2"></ul>
-                        </div>
-                    </div> --}}
                     <x-file-uploader :post_id="$post_id"/>
                 @endif
                 <div class="flex items-center justify-end mt-4">
