@@ -15,6 +15,35 @@
                     placeholder="{{ __('Search') }}" />
                 {{--  <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>  --}}
             </div>
+            <div class="grid grid-cols-12 gap-1 lg:max-w-lg mt-2">
+                <div
+                    class="col-span-12 sm:col-span-6 relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                    <label for="province" class="w-fit pl-0.5 text-sm">{{ __('Province') }}</label>
+                    <select wire:model.live="provinceId" id="province"
+                        class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 py-2 text-sm  disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
+                        <option selected>{{ __('All') }}</option>
+                        @foreach ($this->provinces as $province)
+                            <option value="{{ $province->id }}">
+                                {{ app()->getLocale() === 'en' ? Str::ucfirst($province->city_en) : $province->city_ar }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div
+                    class="col-span-12 sm:col-span-6 relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                    <label for="city" class="w-fit ps-0.5 text-sm">{{ __('City') }}</label>
+                    <select wire:model.live="cityId" id="city"
+                        class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 py-2 text-sm  disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
+                        <option value>{{ __('All') }}</option>
+                        @foreach ($this->cities as $city)
+                            <option value="{{ $city->id }}">
+                                {{ app()->getLocale() === 'en' ? Str::ucfirst($city->city_en) : $city->city_ar }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </form>
     </div>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">

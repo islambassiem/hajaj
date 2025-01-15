@@ -16,4 +16,9 @@ class City extends Model
     {
         return $this->belongsTo(City::class, 'province_id', 'id');
     }
+
+    public function cities()
+    {
+        return $this->where('province_id', $this->id)->get('id');
+    }
 }

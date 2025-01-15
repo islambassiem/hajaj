@@ -79,6 +79,8 @@
     "An unexpected error occurred": "حدث خطاء غير متوقع",
     "Edit an Ad": "تعديل الاعلان",
     "Are you sure you want to delete this image?": "هل تريد حذف هذه الصورة؟",
+    "Please try again later": "يرجى المحاوله لاحقاً",
+    "All": "الكل",
 
     "validation.max.file": "الحد الاقصى للصورة هو ٢ ميجابايت",
     "Whoops! Something went wrong.": "حدث خطأ",
