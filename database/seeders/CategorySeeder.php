@@ -22,6 +22,7 @@ class CategorySeeder extends Seeder
             ['name_ar' => 'الالكترونيات', 'name_en' => 'electronics', 'parent_id' => null],
             ['name_ar' => 'الهوايات', 'name_en' => 'hobbies', 'parent_id' => null],
             ['name_ar' => 'المركبات', 'name_en' => 'vehicles', 'parent_id' => null],
+            ['name_ar' => 'أخرى', 'name_en' => 'others', 'parent_id' => null],
 
             ['name_ar' => 'الادوات', 'name_en' => 'tools', 'parent_id' => 1],
             ['name_ar' => 'الاثاث', 'name_en' => 'furniture', 'parent_id' => 1],
@@ -59,6 +60,7 @@ class CategorySeeder extends Seeder
 
             ['name_ar' => 'دراجات ناريه', 'name_en' => 'motorbikes', 'parent_id' => 7],
             ['name_ar' => 'سيارات', 'name_en' => 'cars', 'parent_id' => 7],
+            ['name_ar' => 'اخرى', 'name_en' => 'other', 'parent_id' => 8],
         ];
 
         foreach($categories as $category){
