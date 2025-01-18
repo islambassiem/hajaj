@@ -67,7 +67,8 @@
                 </a>
             @endforeach
         @else
-            <div class="ps-3 text-gray-700 dark:text-neutral-300 text-xl font-bold">{{ __('Please try again later') }}
+            <div class="absolute ps-3">
+                <span class="relative text-gray-700 dark:text-neutral-300 text-xl font-bold p-3 ">{{ __('There are no ads matching your search') }}</span>
             </div>
         @endif
     </div>
