@@ -53,7 +53,6 @@ class Category extends Component
     public function render()
     {
         $posts = Post::query()
-            ->whereHas('media')
             ->when($this->slug, function ($query) {
                 $category = CategoryModel::where('slug', $this->slug)->first();
                 return $query->where('category_id', $category->id);
