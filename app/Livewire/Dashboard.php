@@ -14,9 +14,19 @@ class Dashboard extends Component
         $this->authorize('delete', $post);
         $post->delete();
     }
+
+    public function refresh($id)
+    {
+        Post::find($id)->touch();
+    }
+
     public function render()
     {
+        $posts = Post::with('category')
+            ->where('user_id', Auth::user()->id)
+            ->latest('updated_at')
+            ->get();
         return view('livewire.dashboard')
-            ->with('posts', Post::with('category')->where('user_id', Auth::user()->id)->get());
+            ->with('posts', $posts);
     }
 }
