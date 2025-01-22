@@ -13,11 +13,13 @@ class Dashboard extends Component
         $post = Post::findorFail($id);
         $this->authorize('delete', $post);
         $post->delete();
+        session()->flash('message', __('Your ad has been deleted'));
     }
 
     public function refresh($id)
     {
         Post::find($id)->touch();
+        session()->flash('message', __('Your ad has been refreshed'));
     }
 
     public function render()

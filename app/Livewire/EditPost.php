@@ -102,6 +102,7 @@ class EditPost extends Component
             'city_id' => $this->cityId,
             'description' => $this->description
         ]);
+        session()->flash('message', __('Your ad has been updated'));
         return redirect()->route('dashboard');
     }
 
