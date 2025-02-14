@@ -85,6 +85,8 @@
     "Your ad has been deleted": "تم حذف الاعلان بنجاح",
     "Your ad has been updated": "تم التعديل بنجاح",
     "Your ad has been refreshed": "تم التحديث بنجاح",
+    "From Price": "من سعر",
+    "To Price": "إلى سعر",
 
     "validation.max.file": "الحد الاقصى للصورة هو ٢ ميجابايت",
     "Whoops! Something went wrong.": "حدث خطأ",

@@ -145,7 +145,9 @@
 
                     <div class="flex gap-5 items-center ms-auto" x-cloak>
                         <x-lang-switcher />
-                        <x-chat-link />
+                        @auth
+                            <x-chat-link />
+                        @endauth
                         <button @click="darkMode = !darkMode">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"
                                 class="text-neutral-100 size-7 hidden dark:block" class="size-7">

@@ -15,9 +15,9 @@
                     placeholder="{{ __('Search') }}" />
                 {{--  <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>  --}}
             </div>
-            <div class="grid grid-cols-12 gap-1 lg:max-w-lg mt-2">
+            <div class="grid grid-cols-12 gap-1 mt-2">
                 <div
-                    class="col-span-12 sm:col-span-6 relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                    class="col-span-12 sm:col-span-3 md:col-span-6 lg:col-span-3 relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
                     <label for="province" class="w-fit pl-0.5 text-sm">{{ __('Province') }}</label>
                     <select wire:model.live="provinceId" id="province"
                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 py-2 text-sm  disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div
-                    class="col-span-12 sm:col-span-6 relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                    class="col-span-12 sm:col-span-3 md:col-span-6 lg:col-span-3 relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
                     <label for="city" class="w-fit ps-0.5 text-sm">{{ __('City') }}</label>
                     <select wire:model.live="cityId" id="city"
                         class="w-full appearance-none rounded-md border border-neutral-300 bg-neutral-50 py-2 text-sm  disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white">
@@ -42,6 +42,20 @@
                             </option>
                         @endforeach
                     </select>
+                </div>
+
+                <div
+                    class="col-span-12 sm:col-span-3 md:col-span-6 lg:col-span-3 relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                    <label for="minPrice" class="w-fit ps-0.5 text-sm">{{ __('From Price') }}</label>
+                    <input type="text" wire:model.live="minPrice" id="minPrice"
+                        class=" text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+
+                <div
+                    class="col-span-12 sm:col-span-3 md:col-span-6 lg:col-span-3 relative flex w-full lg:max-w-lg flex-col gap-1 text-neutral-600 dark:text-neutral-300">
+                    <label for="maxPrice" class="w-fit ps-0.5 text-sm">{{ __('To Price') }}</label>
+                    <input type="text" wire:model.live="maxPrice" id="maxPrice"
+                        class=" text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
             </div>
         </form>
@@ -59,7 +73,8 @@
                     <div class="flex flex-col gap-4 p-6">
                         <span class="text-sm font-medium">{{ $post->category->name }}</span>
                         <h3 class="text-balance text-xl lg:text-2xl font-bold text-neutral-900 dark:text-white"
-                            aria-describedby="featureDescription">{{ Str::limit($post->title, 50) }}</h3>
+                            aria-describedby="featureDescription">{{ Str::limit($post->title, 20) }}</h3>
+                        <span>${{ number_format($post->price, 2) }}</span>
                         <p class="text-pretty text-sm">
                             {{ Str::limit($post->description, 100) }}
                         </p>
@@ -68,7 +83,8 @@
             @endforeach
         @else
             <div class="absolute ps-3">
-                <span class="relative text-gray-700 dark:text-neutral-300 text-xl font-bold p-3 ">{{ __('There are no ads matching your search') }}</span>
+                <span
+                    class="relative text-gray-700 dark:text-neutral-300 text-xl font-bold p-3 ">{{ __('There are no ads matching your search') }}</span>
             </div>
         @endif
     </div>

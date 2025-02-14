@@ -25,6 +25,10 @@ class Category extends Component
 
     public $cityId;
 
+    public $minPrice;
+
+    public $maxPrice;
+
     public function mount($slug = null)
     {
         $this->slug = $slug;
@@ -72,6 +76,12 @@ class Category extends Component
             })
             ->when($this->cityId, function($query){
                 $query->where('city_id', $this->cityId);
+            })
+            ->when($this->minPrice, function($query){
+                return $query->where('price', '>=', $this->minPrice);
+            })
+            ->when($this->maxPrice, function($query){
+                return $query->where('price', '<=', $this->maxPrice);
             })
             ->with(['media', 'category'])
             ->take($this->limit)
