@@ -43,6 +43,10 @@
         </h2>
         <input class="file" type="file" multiple hidden accept=".jpeg, .png, .jpg, .gif, .svg" />
     </div>
+    <div class="mx-5 -mt-3 text-sm text-neutral-500">
+        <div>{{ __('The image must be of type .jpeg, .png, .jpg, .gif, .svg') }}</div>
+        <div>{{ __('The maximum image size is 2 MB') }}</div>
+    </div>
     @section('scripts')
         <script>
             const fileList = document.querySelector(".file-list");

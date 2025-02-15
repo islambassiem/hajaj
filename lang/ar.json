@@ -104,5 +104,7 @@
     "validation.image": ":attribute لابد أن تكون صورة",
     "validation.required": ":attribute مطلوب",
     "validation.confirmed": "تأكيد :attribute غير صحيح",
-    "validation.mimes": ":attribute لابد ان تكون ملف من نوع :values"
+    "validation.mimes": ":attribute لابد ان تكون ملف من نوع :values",
+    "The image must be of type .jpeg, .png, .jpg, .gif, .svg": "الصورة يجب ان تكون من نوع .jpeg, .png, .jpg, .gif, .svg",
+    "The maximum image size is 2 MB": "الحد الاقصى لحجم الصور هو ٢ ميجابايت"
 }
