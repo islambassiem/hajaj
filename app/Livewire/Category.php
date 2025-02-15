@@ -29,6 +29,8 @@ class Category extends Component
 
     public $maxPrice;
 
+    public $subCategories;
+
     public function mount($slug = null)
     {
         $this->slug = $slug;
@@ -52,6 +54,12 @@ class Category extends Component
             return City::where('province_id', $this->provinceId)->get(['id', 'city_en', 'city_ar']);
         }
         return collect();
+    }
+
+    public function category($category)
+    {
+        $subCategories = CategoryModel::where('parent_id', $category)->get();
+        $this->subCategories = $subCategories;
     }
 
     public function render()

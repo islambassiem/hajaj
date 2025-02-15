@@ -40,5 +40,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categories', $categories)
                 ->with('activeCategory',$activeCategory);
         });
+
+        Facades\View::composer('livewire.category', function ($view) use ($categories, $activeCategory) {
+            $view->with('categories', $categories)
+                ->with('activeCategory',$activeCategory);
+        });
     }
 }
