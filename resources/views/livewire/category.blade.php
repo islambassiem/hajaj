@@ -17,7 +17,7 @@
                         placeholder="{{ __('Search') }}" />
                     {{-- <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> --}}
                 </div>
-                <a href="http://127.0.0.1:8000/create"
+                <a href="{{ route('create.post') }}"
                     class="col-span-3 sm:col-span-2  lg:col-span-1 ms-3 flex justify-between items-center border border-indigo-500 bg-indigo-500 text-gray-200 rounded-xl px-4 py-2 hover:bg-indigo-300 hover:text-white hover:border-neutral-100 ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
