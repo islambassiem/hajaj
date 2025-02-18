@@ -76,7 +76,7 @@
                     <div wire:click="category({{ $category->id }})"
                         class="flex flex-col justify-center items-center cursor-pointer p-3 border-2 rounded-3xl min-w-20 hover:bg-indigo-200 transform transition duration-300 hover:scale-105 dark:text-neutral-200" >
                         <x-icon :type="$category->name_en" />
-                        {{ app()->getLocale() == 'ar' ? Str::limit($category->name_ar,5) : Str::limit($category->name_en ,5) }}
+                        {{ app()->getLocale() == 'ar' ? $category->name_ar : $category->name_en  }}
                     </div>
                 @endforeach
             </div>
@@ -84,7 +84,7 @@
                 @foreach ($subCategories as $subCategory)
                     <a href="/category/{{ $subCategory->name_en }}" class="flex flex-col justify-center items-center cursor-pointer p-3 border-2 rounded-3xl min-w-20 hover:bg-indigo-200 transform transition duration-300 hover:scale-105 dark:text-neutral-200">
                         <x-icon :type="$subCategory->name_en" />
-                        <span>{{ app()->getLocale() == 'ar' ? Str::limit($subCategory->name_ar, 5) : Str::limit($subCategory->name_en, 5) }}</span>
+                        <span>{{ app()->getLocale() == 'ar' ? $subCategory->name_ar : $subCategory->name_en }}</span>
                     </a>
                 @endforeach
             </div>
