@@ -160,6 +160,18 @@
         <x-icons.cars :size="$size" />
     @break
 
+    @case('real state')
+        <x-icons.real-state :size="$size" />
+    @break
+
+    @case('sale')
+        <x-icons.sale :size="$size" />
+    @break
+
+    @case('rent')
+        <x-icons.rent :size="$size" />
+    @break
+
     @default
         <x-icons.other :size="$size" />
 @endswitch
