@@ -29,7 +29,7 @@ class Category extends Component
 
     public $maxPrice;
 
-    public $subCategories;
+    public $subCategories = [];
 
     public function mount($slug = null)
     {
@@ -60,6 +60,12 @@ class Category extends Component
     {
         $subCategories = CategoryModel::where('parent_id', $category)->get();
         $this->subCategories = $subCategories;
+    }
+
+    public function subCategory($subCategory)
+    {
+        return dd($subCategory);
+        return redirect('/category//' . $subCategory);
     }
 
     public function render()
