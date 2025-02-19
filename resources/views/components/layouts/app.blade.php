@@ -139,7 +139,7 @@
                         </nav>
                     @else
                         <div class="dark:text-neutral-300 flex items-center text-sm ms-2 font-bold">
-                            {{ __('Browse All Market Place') }}
+                            <a href="{{ route('category') }}">{{ __('All') }}</a>
                         </div>
                     @endisset
 
