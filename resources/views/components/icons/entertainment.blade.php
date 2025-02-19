@@ -1,6 +1,6 @@
         <?xml version="1.0" encoding="utf-8"?>
         <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-        <svg fill="currentColor" class="{{ $size }}" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg"
+        <svg fill="{{ $color }}" class="{{ $size }}" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve">
             <path d="M28.2,11c0.4-0.1,0.8-0.5,0.8-1V1c0-0.3-0.1-0.6-0.4-0.8S28.1,0,27.8,0C20.1,2,11.9,2,4.2,0C3.9,0,3.6,0,3.4,0.2
             C3.1,0.4,3,0.7,3,1v9c0,0.5,0.3,0.9,0.8,1c0.4,0.1,0.8,0.2,1.2,0.3v4c-0.3-0.1-0.5-0.1-0.8-0.2c-0.3-0.1-0.6,0-0.9,0.2

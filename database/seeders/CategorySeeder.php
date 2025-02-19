@@ -22,7 +22,7 @@ class CategorySeeder extends Seeder
             ['name_ar' => 'الالكترونيات', 'name_en' => 'electronics', 'parent_id' => null],
             ['name_ar' => 'الهوايات', 'name_en' => 'hobbies', 'parent_id' => null],
             ['name_ar' => 'المركبات', 'name_en' => 'vehicles', 'parent_id' => null],
-            ['name_ar' => 'العقارات', 'name_en' => 'real state', 'parent_id' => null],
+            ['name_ar' => 'العقارات', 'name_en' => 'real estate', 'parent_id' => null],
             ['name_ar' => 'أخرى', 'name_en' => 'others', 'parent_id' => null],
 
             ['name_ar' => 'الادوات', 'name_en' => 'tools', 'parent_id' => 1],

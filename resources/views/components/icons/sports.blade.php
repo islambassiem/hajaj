@@ -7,8 +7,8 @@
 
         <style>
             .cls-1 {
-                fill: none;
-                stroke: currentColor;
+                fill: {{ $color }};
+                stroke: {{ $color }};
                 stroke-linecap: round;
                 stroke-linejoin: round;
                 stroke-width: 1.5px;

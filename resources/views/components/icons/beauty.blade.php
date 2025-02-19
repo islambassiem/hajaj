@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg fill="currentColor" class="{{ $size }}" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+<svg fill="{{ $color }}" class="{{ $size }}" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
 
     <title />
 

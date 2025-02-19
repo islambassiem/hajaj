@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg fill="currentColor" class="{{ $size }}" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+<svg fill="{{ $color }}" class="{{ $size }}" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
     <path
         d="M379.141 472.367H215.035c-16.962 0-30.72-13.758-30.72-30.72V71.676c0-16.962 13.758-30.72 30.72-30.72h591.8c16.962 0 30.72 13.758 30.72 30.72v364.851c0 16.962-13.758 30.72-30.72 30.72h-96.768v40.96h96.768c39.583 0 71.68-32.097 71.68-71.68V71.676c0-39.583-32.097-71.68-71.68-71.68h-591.8c-39.583 0-71.68 32.097-71.68 71.68v369.971c0 39.583 32.097 71.68 71.68 71.68h164.106v-40.96z" />
     <path

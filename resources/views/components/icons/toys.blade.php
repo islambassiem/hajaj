@@ -5,8 +5,8 @@
     viewBox="0 0 32 32" xml:space="preserve">
     <style type="text/css">
         .st0 {
-            fill: none;
-            stroke: currentColor;
+            fill: {{ $color }};
+            stroke: #ffffff;
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -14,8 +14,8 @@
         }
 
         .st1 {
-            fill: none;
-            stroke: currentColor;
+            fill: {{ $color }};
+            stroke: #ffffff;
             stroke-width: 2;
             stroke-linejoin: round;
             stroke-miterlimit: 10;
